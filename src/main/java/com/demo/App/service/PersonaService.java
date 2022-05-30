@@ -1,35 +1,41 @@
 package com.demo.App.service;
 
+import com.demo.App.exception.UserNotFoundException;
 import com.demo.App.model.Persona;
-import com.demo.App.repository.PersonaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.demo.App.repository.PersonaRepository;
 
 @Service
-public class PersonaService implements IPersonaService {
+public class PersonaService implements IPersona{
 
     @Autowired
-    public PersonaRepository persoRepo;
+    public PersonaRepository usuRepo;
     
     @Override
-    public List<Persona> verPersonas() {
-        return persoRepo.findAll();
+    public List<Persona> verPersona() {
+        return usuRepo.findAll();
     }
 
     @Override
     public void crearPersona(Persona per) {
-        persoRepo.save(per);
+        usuRepo.save(per);
     }
 
     @Override
-    public void borrarPersona(Long id) {
-        persoRepo.deleteById(id);
+    public void borrarPersona(Long idPer) {
+        usuRepo.deleteById(idPer);
     }
 
     @Override
-    public Persona buscarPersona(Long id) {
-      return  persoRepo.findById(id).orElse(null);
+    public Persona buscarPersona(Long idPer) {
+        return usuRepo.findById(idPer).orElseThrow(()-> new UserNotFoundException("usuario no encontrado")  );
+    }
+
+    @Override
+    public Persona editarPersona(Persona per) {
+        return usuRepo.save(per);
     }
     
 }
