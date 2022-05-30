@@ -1,41 +1,41 @@
 package com.demo.App.service;
 
 import com.demo.App.exception.UserNotFoundException;
-import com.demo.App.model.Hab_Blandas;
-import com.demo.App.repository.Hab_BlandasRepository;
+import com.demo.App.model.Blandas;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.demo.App.repository.BlandasRepository;
 
 @Service
-public class Hab_BlandasService implements IHab_Blandas{
+public class BlandasService implements IBlandas{
 
     @Autowired
-    public Hab_BlandasRepository hab_bRepo;
+    public BlandasRepository blandasRepo;
     
     @Override
-    public List<Hab_Blandas> verHab_Blandas() {
-    return hab_bRepo.findAll();
+    public List<Blandas> verBlandas() {
+    return blandasRepo.findAll();
     }
 
     @Override
-    public void crearHab_Blandas(Hab_Blandas hab_b) {
-       hab_bRepo.save(hab_b);
+    public void crearBlandas(Blandas blandas) {
+       blandasRepo.save(blandas);
     }
 
     @Override
-    public void borrarHab_Blandas(Long idHab_b) {
-        hab_bRepo.deleteById(idHab_b);
+    public void borrarBlandas(Long idBlandas) {
+        blandasRepo.deleteById(idBlandas);
     }
 
     @Override
-    public Hab_Blandas buscarHab_Blandas(Long idHab_b) {
-        return hab_bRepo.findById(idHab_b).orElseThrow(()-> new UserNotFoundException("usuario no encontrado")  );
+    public Blandas buscarBlandas(Long idBlandas) {
+        return blandasRepo.findById(idBlandas).orElseThrow(()-> new UserNotFoundException("usuario no encontrado")  );
     }
 
     @Override
-    public Hab_Blandas editarHab_Blandas(Hab_Blandas hab_b) {
-        return hab_bRepo.save(hab_b);
+    public Blandas editarBlandas(Blandas blandas) {
+        return blandasRepo.save(blandas);
     }
     
     

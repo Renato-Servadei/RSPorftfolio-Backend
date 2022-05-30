@@ -1,14 +1,14 @@
 package com.demo.App.service;
 
-import com.demo.App.model.Hab_Blandas;
+import com.demo.App.model.Blandas;
 import java.util.List;
 
-public interface IHab_Blandas {
+public interface IBlandas {
 
 
-    public List<Hab_Blandas> verHab_Blandas();
-    public void crearHab_Blandas(Hab_Blandas hab_b);
-    public void borrarHab_Blandas(Long idHab_b);
-    public Hab_Blandas buscarHab_Blandas(Long idHab_b); 
-    public Hab_Blandas editarHab_Blandas(Hab_Blandas hab_b);
+    public List<Blandas> verBlandas();
+    public void crearBlandas(Blandas blandas);
+    public void borrarBlandas(Long idBlandas);
+    public Blandas buscarBlandas(Long idBlandas); 
+    public Blandas editarBlandas(Blandas blandas);
 }

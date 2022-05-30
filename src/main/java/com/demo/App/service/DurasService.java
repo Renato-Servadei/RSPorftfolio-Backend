@@ -1,42 +1,42 @@
 package com.demo.App.service;
 
 import com.demo.App.exception.UserNotFoundException;
-import com.demo.App.model.Hab_Duras;
-import com.demo.App.repository.Hab_DurasRepository;
+import com.demo.App.model.Duras;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.demo.App.repository.DurasRepository;
 
 
 @Service
-public class Hab_DurasService implements IHab_Duras{
+public class DurasService implements IDuras{
     
     @Autowired
-    public Hab_DurasRepository hab_dRepo;
+    public DurasRepository durasRepo;
     
     @Override
-    public List<Hab_Duras> verHab_Duras() {
-    return hab_dRepo.findAll();
+    public List<Duras> verDuras() {
+    return durasRepo.findAll();
     }
 
     @Override
-    public void crearHab_Duras(Hab_Duras hab_d) {
-        hab_dRepo.save(hab_d);
+    public void crearDuras(Duras duras) {
+        durasRepo.save(duras);
     }
 
     @Override
-    public void borrarHab_Duras(Long idHab_d) {
-        hab_dRepo.deleteById(idHab_d);
+    public void borrarDuras(Long idDuras) {
+        durasRepo.deleteById(idDuras);
     }
 
     @Override
-    public Hab_Duras buscarHab_Duras(Long idHab_d) {
-        return hab_dRepo.findById(idHab_d).orElseThrow(()-> new UserNotFoundException("usuario no encontrado")  );
+    public Duras buscarDuras(Long idDuras) {
+        return durasRepo.findById(idDuras).orElseThrow(()-> new UserNotFoundException("usuario no encontrado")  );
     }
 
     @Override
-    public Hab_Duras editarHab_Duras(Hab_Duras hab_d) {
-        return hab_dRepo.save(hab_d);
+    public Duras editarDuras(Duras duras) {
+        return durasRepo.save(duras);
     }
     
 }

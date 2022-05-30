@@ -1,11 +1,13 @@
 package com.demo.App.controller;
 
 
-import com.demo.App.model.Hab_Blandas;
-import com.demo.App.service.IHab_Blandas;
+import com.demo.App.model.Blandas;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,47 +17,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.demo.App.service.IBlandas;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-public class Hab_BlandasController {
+@CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/api/blandas")
+
+public class BlandasController {
     
-    List<Hab_Blandas> listaHab_Blandas = new ArrayList();
+    List<Blandas> listaBlandas = new ArrayList();
     
     @Autowired
-    private IHab_Blandas hab_bServ;
+    private IBlandas blandasServ;
     
-    @PostMapping("/crear/hab_blandas")
-    public void crearHab_Blandas(@RequestBody Hab_Blandas hab_b) {
-        hab_bServ.crearHab_Blandas(hab_b);
+    @PostMapping
+    public void crearBlandas(@RequestBody Blandas blandas) {
+        blandasServ.crearBlandas(blandas);
     }
     
-    @GetMapping("/ver/hab_blandas")
+    @GetMapping
     @ResponseBody
-    public List<Hab_Blandas> verHab_Blandas() {
-        return hab_bServ.verHab_Blandas();
+    public List<Blandas> verBlandas() {
+        return blandasServ.verBlandas();
     }
     
-    @GetMapping("/ver/hab_blandas/{idHab_b}")
+    @GetMapping("{idBlandas}")
     @ResponseBody
-    public Hab_Blandas buscarHab_Blandas(@PathVariable("idHab_b") Long idHab_b) {
-        return hab_bServ.buscarHab_Blandas(idHab_b);
+    public Blandas buscarBlandas(@PathVariable("idBlandas") Long idBlandas) {
+        return blandasServ.buscarBlandas(idBlandas);
     }
     
-    @DeleteMapping("/borrar/hab_blandas/{idHab_b}")
-    public void borrarHab_Blandas(@PathVariable Long idHab_b) {
-        hab_bServ.borrarHab_Blandas(idHab_b);
+    @DeleteMapping("/{idBlandas}")
+    public void borrarBlandas(@PathVariable Long idBlandas) {
+        blandasServ.borrarBlandas(idBlandas);
     }
     
-    @PutMapping("/editar/hab_blandas/{idHab_b}")
-    public Hab_Blandas editarHab_Blandas(@PathVariable Long idHab_b,
-                                                @RequestParam("nombreHab_b") String nuevoNombre,
-                                                @RequestParam("tituloHab_b") String nuevoIcono) {
-        Hab_Blandas hab_b = hab_bServ.buscarHab_Blandas(idHab_b);
-        hab_b.setNombreHab_B(nuevoNombre);
-        hab_b.setIconoHab_B(nuevoIcono);
-        
-        hab_bServ.crearHab_Blandas(hab_b);
-        return hab_b;
+    @PutMapping
+    public ResponseEntity<Blandas> editarBlandas(@RequestBody Blandas blandas) {
+        Blandas editarBlandas = blandasServ.editarBlandas(blandas);
+        return new ResponseEntity<>(editarBlandas, HttpStatus.OK);
 }
     
 }

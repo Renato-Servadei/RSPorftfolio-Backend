@@ -8,23 +8,23 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-public class Hab_Blandas {
+public class Blandas {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idHab_B;
-    private String nombreHab_B;
-    private String iconoHab_B;
+    private Long idBlandas;
+    private String nombreBlandas;
+    private String iconoBlandas;
     
     
 
-    public Hab_Blandas() {
+    public Blandas() {
     }
 
-    public Hab_Blandas (Long idHab_B, String nombreHab_B, String iconoHab_B) {
-        this.idHab_B = idHab_B;
-        this.nombreHab_B = nombreHab_B;
-        this.iconoHab_B = iconoHab_B;
+    public Blandas (Long idBlandas, String nombreBlandas, String iconoBlandas) {
+        this.idBlandas = idBlandas;
+        this.nombreBlandas = nombreBlandas;
+        this.iconoBlandas = iconoBlandas;
     }
     
     

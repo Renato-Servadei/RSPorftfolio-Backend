@@ -13,50 +13,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.demo.App.service.IPersona;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost4200")
+@CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/api/persona")
 public class PersonaController {
     
     @Autowired
     public IPersona personaServ;
     
-    @PostMapping("/persona/crear")
+    @PostMapping
     public void crearPersona(@RequestBody Persona per) {
         personaServ.crearPersona(per);
     }
     
-    @GetMapping("/persona/ver")
+    @GetMapping
     @ResponseBody
     public List<Persona> verPersona() {
         return personaServ.verPersona();
     }
     
-    @GetMapping("/persona/ver/{idPer}")
+    @GetMapping("/{idPer}")
     @ResponseBody
     public Persona buscarPersona(@PathVariable("idPer") Long idPer) {
         return personaServ.buscarPersona(idPer);
     }
     
-    @DeleteMapping("/persona/borrar/{idPer}")
+    @DeleteMapping("/{idPer}")
     public void borrarPersona(@PathVariable Long idPer) {
         personaServ.borrarPersona(idPer);
     }
     
-    @PutMapping("/persona/editar/{idPer}")
-    public Persona editarPersona(@PathVariable Long idPer,
-                                                @RequestParam("nombrePer") String nuevoNombre,
-                                                @RequestParam("ciudadPer") String nuevaCiudad) {
-        Persona per = personaServ.buscarPersona(idPer);
-        per.setNombrePer(nuevoNombre);
-        per.setCiudadPer(nuevaCiudad);
-        
-        
-        personaServ.crearPersona(per);
-        return per;
+    @PutMapping
+    public ResponseEntity <Persona> editarPersona(@RequestBody Persona per) {
+        Persona editarPersona = personaServ.editarPersona(per);
+        return new ResponseEntity<>(editarPersona, HttpStatus.OK);
 }
     }
             

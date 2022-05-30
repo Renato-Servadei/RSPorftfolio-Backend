@@ -11,19 +11,22 @@ import lombok.Setter;
 @Entity
 public class Persona implements Serializable {
     
-@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPer;
     private String nombrePer;
     private String ciudadPer;
+    private String descPer;
+    private String imgPer;
 
     public Persona() {
     }
 
-    public Persona(Long idPer, String nombrePer, String ciudadPer) {
+    public Persona(Long idPer, String nombrePer, String ciudadPer, String descPer) {
         this.idPer = idPer;
         this.nombrePer = nombrePer;
         this.ciudadPer = ciudadPer;
+        this.descPer = descPer;
     }
     
     
