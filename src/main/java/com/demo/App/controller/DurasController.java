@@ -21,7 +21,7 @@ import com.demo.App.service.IDuras;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://rsportfolio-front-a45ea.web.app")
 @RequestMapping("/api/duras")
 public class DurasController {
     
