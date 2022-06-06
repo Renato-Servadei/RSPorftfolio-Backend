@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import com.demo.App.repository.UserRepository;
-import com.demo.App.security.jwt.JwtTokenFilter;
+import com.demo.App.seguridad.jwt.jwtTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,7 +25,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
     private UserRepository userRepo;
     
     @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+    private jwtTokenFilter jwtTokenFilter;
     
     @Bean
     PasswordEncoder passwordEncoder() {
